@@ -7,6 +7,7 @@
   <div>
     <h4 :style="styles">{{products[0]}}</h4>
     <p>{{ price1 }} 만원</p>
+    <button @click="increase">허위매물신고</button> <span>신고수: {{report}}</span>
   </div>
   <div>
     <h4>{{products[1]}}</h4>
@@ -24,6 +25,7 @@ export default {
   name: 'App',
   data(){
     return {
+      report : 0,
       price1 : 60,
       price2 : 70,
       styles : "color: blue",
@@ -31,6 +33,13 @@ export default {
       menus : ["Home", "Shop", "About"]
     }
   },
+
+  methods: {
+    increase(){
+      this.report += 1;
+    }
+  },
+
   components: {
     
   }
