@@ -8,6 +8,7 @@
     <div class="white-bg">
       <h4>상세페이지</h4>
       <p>내용</p>
+      <!-- <h4>{{state.getMsg[0].content}}</h4> <- node.js에서 가져온 데이터 -->
       <button @click="Himodal = false">닫기</button>
     </div>
   </div>
@@ -35,16 +36,55 @@
 <script>
 
 import {roomdata} from "./assets/oneroom.js"
+// import {onMounted, reactive} from "vue" <- node.js 연동
+// import axios from "axios" <- node.js 연동
 
 export default {
   name: 'App',
   data(){
+
+  // node.js 연동 ----------
+
+  // const state = reactive ({
+  //     getMsg: '',
+  //     postMsg: ''
+  //  })
+
+  //  onMounted(() => {
+  //     try {
+  //       let urlGet = '/api/getTest';
+  //       axios.get(urlGet, {
+  //       })
+  //       .then(function (response) {
+  //         state.getMsg = response.data.msg
+  //       })
+  //       .catch(function (error) {
+  //         alert(error);
+  //       });
+        
+
+  //       let urlPost = '/api/postTest';
+  //       axios.post(urlPost, {
+  //         name: " Connect Node.js+Vue.js"
+  //       }).then(function (response) {
+  //         state.postMsg = response.data.msg
+  //       })
+  //       .catch(function (error) {
+  //         alert(error);
+  //       });
+  //    } catch (err) {
+  //       console.log(err);
+  //     }
+  //   });
+  //   -------------------
+
     return {
       report : [0,0,0],
       styles : "color: green",
       products : roomdata,
       menus : ["Home", "Shop", "About"],
       Himodal : false
+      // state <- node.js 연동,
     }
   },
 
