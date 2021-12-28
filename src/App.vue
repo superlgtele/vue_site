@@ -20,11 +20,13 @@
     </div>
   </div> -->
 
-  <div v-for="(a,i) in products" :key="i">
+  <UseCard @openmodal="Himodal = true; clicktitle = $event" v-bind:Bindroomdata="products[i]" v-for="(a,i) in products" :key="i"/>
+  
+  <!-- <div v-for="(a,i) in products" :key="i">
     <img :src = "a.image" class="room-img">
     <h4 @click = "Himodal = true; clicktitle = i ">{{a.title}}</h4>
     <p>{{a.price}}원</p>
-  </div>
+  </div> -->
 
 </template>
 
@@ -33,6 +35,7 @@
 import {roomdata} from "./assets/oneroom.js"
 import Discount from "./Discount.vue"
 import Modal from "./Modal.vue"
+import Card from "./Card.vue"
 // import {onMounted, reactive} from "vue" <- node.js 연동
 // import axios from "axios" <- node.js 연동
 
@@ -92,7 +95,8 @@ export default {
 
   components: {
     DiscountDiv : Discount,
-    UseModal : Modal
+    UseModal : Modal,
+    UseCard : Card
   }
 }
 
