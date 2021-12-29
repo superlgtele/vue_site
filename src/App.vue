@@ -5,9 +5,17 @@
   </div>
 
   <DiscountDiv/>
-  <UseModal v-bind:Bindproducts="products" 
+
+  <button @click="pricesort">가격순으로 정렬</button>
+  <button @click="backsort">되돌리기</button>
+
+  <!-- <div class="startmodal" :class="{ endmodal : Himodal }" > -->
+  <transition name="vuestylemodal">
+  <UseModal @closemodal="Himodal = false" v-bind:Bindproducts="products" 
   v-bind:Bindclicktitle="clicktitle"
   v-bind:BindHimodal="Himodal" />
+  </transition>
+  <!-- </div> -->
 
   <!-- <div class="black-bg" v-if="Himodal == true">
     <div class="white-bg">
@@ -79,6 +87,7 @@ export default {
   //   -------------------
 
     return {
+      originalproducts : [...roomdata],
       clicktitle : 0,
       report : [0],
       styles : "color: green",
@@ -90,7 +99,14 @@ export default {
   },
 
   methods: {
-    
+    pricesort() {
+      this.products.sort(function(a,b) {
+        return a.price - b.price;
+      })
+    },
+    backsort() {
+      this.products = [...this.originalproducts];
+    }
   },
 
   components: {
@@ -152,6 +168,39 @@ div {
 .menu a {
   color: white;
   padding: 10px;
+}
+
+/* .startmodal {
+  opacity: 0;
+  transition: all 1s;
+}
+
+.endmodal {
+  opacity: 1;
+} */
+
+.vuestylemodal-enter-from {
+  opacity: 0;
+}
+
+.vuestylemodal-enter-active {
+  transition: all 1s;
+}
+
+.vuestylemodal-enter-to {
+  opacity: 1;
+}
+
+.vuestylemodal-leave-from {
+  opacity: 1;
+}
+
+.vuestylemodal-leave-active {
+  transition: all 1s;
+}
+
+.vuestylemodal-leave-to {
+  opacity: 0;
 }
 
 </style>
