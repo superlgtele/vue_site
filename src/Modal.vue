@@ -21,6 +21,11 @@ export default {
         month : 1
       }
     },
+    // beforeUpdate() {
+    //   if(this.month == 2) {
+    //     alert("2개월은 너무 적어요. 더사세요!");
+    //   }
+    // },
     watch : {
       month(userinput) {
         if (isNaN(userinput)) {

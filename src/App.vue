@@ -4,7 +4,7 @@
     <a v-for="(a,i) in menus" :key="i"> {{ a }} </a>
   </div>
 
-  <DiscountDiv/>
+  <DiscountDiv />
 
   <button @click="pricesort">가격순으로 정렬</button>
   <button @click="backsort">되돌리기</button>
