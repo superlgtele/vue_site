@@ -6,6 +6,8 @@
 
   <DiscountDiv />
 
+  <router-view></router-view>
+
   <button @click="pricesort">가격순으로 정렬</button>
   <button @click="backsort">되돌리기</button>
 
