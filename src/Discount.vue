@@ -9,15 +9,20 @@ export default {
     name: "Discount",
      data() {
       return {
-        discountnumber : 10
+        discountnumber : 20,
+        setIntervaltime : 1000
       }
     },
 
     mounted() {
-    setInterval(() => {
+    const discounttime = setInterval(() => {
         this.discountnumber -= 1
-      }, 1000);
-    }
+      }, this.setIntervaltime);
+
+    setTimeout(() => {
+        clearInterval(discounttime)
+      }, this.setIntervaltime * this.discountnumber)  ;
+   }
 }
 
 </script>
