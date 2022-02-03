@@ -1,5 +1,5 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import Listrouter from './router.js'
+import { createApp } from "vue";
+import App from "./App.vue";
+import store from "./store";
 
-createApp(App).use(Listrouter).mount('#app')
+createApp(App).use(store).mount("#app");
