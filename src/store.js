@@ -50,6 +50,7 @@ const store = createStore({
         },
       ],
       ModalIndex: 0,
+      MonthData: 0,
     };
   },
   mutations: {
@@ -59,6 +60,9 @@ const store = createStore({
     },
     CloseModal(state) {
       state.modal = false;
+    },
+    UserMonth(state, payload) {
+      state.MonthData = payload;
     },
   },
   actions: {},

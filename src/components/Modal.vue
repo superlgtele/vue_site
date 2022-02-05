@@ -6,7 +6,14 @@
         style="width: 100%"
       />
       <h4>{{ $store.state.products[$store.state.ModalIndex].content }}</h4>
-      <p>{{ $store.state.products[$store.state.ModalIndex].price }}원</p>
+      <input @input="$store.commit('UserMonth', $event.target.value)" />
+      <p>
+        {{ $store.state.MonthData }}개월 :
+        {{
+          $store.state.MonthData *
+          $store.state.products[$store.state.ModalIndex].price
+        }}원
+      </p>
       <button @click="$store.commit('CloseModal')">닫기</button>
     </div>
   </div>
