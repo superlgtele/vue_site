@@ -39,7 +39,6 @@ export default {
       const regex = /^[0-9]+$/;
       if (!data.match(regex) || data > 9) {
         alert("0~9까지의 숫자만 입력해주세요!");
-        // $store.state.MonthData 값 1로 초기화해야함!
       }
     },
   },
