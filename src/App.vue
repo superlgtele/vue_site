@@ -5,8 +5,11 @@
     <a v-for="(menus, i) in $store.state.menus" :key="i">{{ menus }}</a>
   </div>
 
-  <!-- <router-link to="/about">About 페이지</router-link> -->
-  <router-view></router-view>
+  <div>
+    <!-- <router-link to="/home">Home 페이지</router-link> -->
+    <router-view></router-view>
+  </div>
+
   <img alt="Vue logo" src="./assets/logo.png" />
 
   <div v-for="(products, i) in $store.state.products" :key="i">

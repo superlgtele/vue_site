@@ -1,5 +1,5 @@
 <template>
-  <div>About-Page 입니다!</div>
+  <div>Home-Page 입니다!</div>
 </template>
 
 <script>
