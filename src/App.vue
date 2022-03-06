@@ -5,6 +5,10 @@
     <a v-for="(menus, i) in $store.state.menus" :key="i">{{ menus }}</a>
   </div>
 
+  <button class="ani-button" @click="$store.commit('SortPrice')">
+    가격정렬
+  </button>
+
   <div>
     <!-- <router-link to="/home">Home 페이지</router-link> -->
     <router-view></router-view>
@@ -13,10 +17,7 @@
   <img alt="Vue logo" src="./assets/logo.png" />
 
   <div v-for="(products, i) in $store.state.products" :key="i">
-    <img
-      :src="`https://codingapple1.github.io/vue/room${i}.jpg`"
-      class="room-img"
-    />
+    <img :src="$store.state.products[i].image" class="room-img" />
     <h4 @click="$store.commit('OpenModal', i)">{{ products.title }}</h4>
     <p>{{ products.price }}원</p>
   </div>
@@ -81,5 +82,36 @@ div {
 .room-img {
   width: 100%;
   margin-top: 10px;
+}
+
+.ani-button {
+  display: block;
+  background: skyblue;
+  padding: 10px 20px;
+  border: none;
+  margin: 10px auto;
+  border-radius: 10px;
+  color: brown;
+  font-size: 20px;
+}
+
+.ani-button:hover {
+  animation-name: Shake;
+  animation-duration: 1.5s;
+}
+
+@keyframes Shake {
+  0% {
+    transform: rotate(0px);
+  }
+  33% {
+    transform: rotate(-10deg);
+  }
+  66% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0px);
+  }
 }
 </style>

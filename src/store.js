@@ -64,6 +64,11 @@ const store = createStore({
     UserMonth(state, payload) {
       state.MonthData = payload;
     },
+    SortPrice(state) {
+      state.products.sort(function (a, b) {
+        return a.price - b.price;
+      });
+    },
   },
   actions: {},
 });
