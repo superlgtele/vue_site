@@ -5,9 +5,13 @@
     <a v-for="(menus, i) in $store.state.menus" :key="i">{{ menus }}</a>
   </div>
 
-  <button class="ani-button" @click="$store.commit('SortPrice')">
-    가격정렬
-  </button>
+  <div class="buttons">
+    <button class="ani-button" @click="$store.commit('SortPrice')">
+      가격정렬
+    </button>
+    <button class="ani-button">이름정렬</button>
+    <button class="ani-button">되돌리기</button>
+  </div>
 
   <div>
     <!-- <router-link to="/home">Home 페이지</router-link> -->
@@ -85,14 +89,18 @@ div {
 }
 
 .ani-button {
-  display: block;
   background: skyblue;
-  padding: 10px 20px;
+  padding: 5px 15px;
   border: none;
   margin: 10px auto;
   border-radius: 10px;
-  color: brown;
-  font-size: 20px;
+  color: white;
+  font-size: 15px;
+  width: 20%;
+}
+
+.buttons {
+  display: flex;
 }
 
 .ani-button:hover {
