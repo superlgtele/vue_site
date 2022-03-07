@@ -7,16 +7,20 @@
 
   <div class="buttons">
     <button class="ani-button" @click="$store.commit('SortPrice')">
-      가격정렬
+      가격순정렬
     </button>
-    <button class="ani-button">이름정렬</button>
-    <button class="ani-button">되돌리기</button>
+    <button class="ani-button" @click="$store.commit('SortName')">
+      50만원이하
+    </button>
+    <button class="ani-button" @click="$store.commit('BackSort')">
+      되돌리기
+    </button>
   </div>
 
-  <div>
-    <!-- <router-link to="/home">Home 페이지</router-link> -->
+  <!-- <div>
+    <router-link to="/home">Home 페이지</router-link>
     <router-view></router-view>
-  </div>
+  </div> -->
 
   <img alt="Vue logo" src="./assets/logo.png" />
 
