@@ -5,6 +5,10 @@
     <a v-for="(menus, i) in $store.state.menus" :key="i">{{ menus }}</a>
   </div>
 
+  <div class="discount">
+    <h4>Today all room 15% discount!</h4>
+  </div>
+
   <div class="buttons">
     <button class="ani-button" @click="$store.commit('SortPrice')">
       가격순정렬
@@ -85,6 +89,13 @@ div {
 .menu a {
   color: white;
   padding: 10px;
+}
+
+.discount {
+  background: #eee;
+  padding: 3px;
+  margin: 5px;
+  border-radius: 10px;
 }
 
 .room-img {
