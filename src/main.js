@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import store from "./store";
-import UseRouter from "./router.js";
+import store from "./store.js";
 
-createApp(App).use(store).use(UseRouter).mount("#app");
+let app = createApp(App);
+
+app.use(store).mount("#app");

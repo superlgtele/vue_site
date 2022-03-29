@@ -1,140 +1,463 @@
 <template>
-  <ModalComponents />
-
-  <div class="menu">
-    <a v-for="(menus, i) in $store.state.menus" :key="i">{{ menus }}</a>
-  </div>
-
-  <div class="discount">
-    <h4>Today all room 15% discount!</h4>
-  </div>
-
-  <div class="buttons">
-    <button class="ani-button" @click="$store.commit('SortPrice')">
-      가격순정렬
-    </button>
-    <button class="ani-button" @click="$store.commit('SortName')">
-      50만원이하
-    </button>
-    <button class="ani-button" @click="$store.commit('BackSort')">
-      되돌리기
-    </button>
-  </div>
-
-  <!-- <div>
-    <router-link to="/home">Home 페이지</router-link>
-    <router-view></router-view>
-  </div> -->
-
-  <img alt="Vue logo" src="./assets/logo.png" />
-
-  <div v-for="(products, i) in $store.state.products" :key="i">
-    <img :src="$store.state.products[i].image" class="room-img" />
-    <h4 @click="$store.commit('OpenModal', i)">{{ products.title }}</h4>
-    <p>{{ products.price }}원</p>
+  <div class="container-doc">
+    <Header />
+    <Search />
+    <Main />
+    <Footer />
   </div>
 </template>
 
 <script>
-import ModalComponents from "./components/Modal.vue";
+import Header from "./components/Header";
+import Search from "./components/Search";
+import Main from "./components/Main";
+import Footer from "./components/Footer";
 
 export default {
   name: "App",
-  data() {
-    return {};
+
+  mounted() {
+    this.$store.dispatch("ajax");
   },
-  methods: {},
+
   components: {
-    ModalComponents,
-  },
-  computed: {
-    CheckMonth() {
-      return this.$store.state.MonthData;
-    },
-  },
-  watch: {
-    CheckMonth(data) {
-      const regex = /^[0-9]+$/;
-      if (!data.match(regex) || data > 9) {
-        alert("0~9까지의 숫자만 입력해주세요!");
-      }
-    },
+    Header,
+    Search,
+    Main,
+    Footer,
   },
 };
 </script>
 
 <style>
-body {
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+textarea,
+p,
+blockquote,
+th,
+td,
+input,
+select,
+button {
   margin: 0;
+  padding: 0;
+}
+fieldset,
+img {
+  border: 0 none;
+}
+dl,
+ul,
+ol,
+menu,
+li {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+input,
+select,
+textarea,
+button {
+  vertical-align: middle;
+}
+input::-ms-clear {
+  display: none;
+}
+button {
+  border: 0 none;
+  background-color: transparent;
+  cursor: pointer;
+}
+body {
+  background: #fff;
+}
+body,
+th,
+td,
+input,
+select,
+textarea,
+button {
+  font-size: 12px;
+  line-height: 1.5;
+  font-family: "돋움", dotum, sans-serif;
+  color: #3d5866;
+  outline: none;
+}
+a {
+  color: #333;
+  text-decoration: none;
+}
+a:active {
+  background-color: transparent;
+}
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+var {
+  font-style: normal;
+  font-weight: normal;
 }
 
-div {
+/* global */
+.direct-link {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  z-index: 1000;
+  height: 1px;
+}
+.direct-link a {
+  position: absolute;
+  top: -999px;
+  padding: 5px 10px;
+  font-weight: bold;
+  color: #fff;
+  background: #333;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.direct-link a:focus {
+  top: 0;
+}
+.ir_pm {
+  display: block;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
+}
+.screen_out {
+  overflow: hidden;
+  position: absolute;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  text-indent: -9999px;
+}
+
+/* style */
+.container-doc {
+  min-width: 1180px;
+}
+.doc-header .main_tit {
+  background-color: #1a1a1a;
+}
+.doc-header .main_tit .inner_main {
+  /* display: grid;
+  justify-content: space-between;
+  grid-template-columns: 1fr 1fr; */
+  overflow: hidden;
+  width: 916px;
+  height: 79px;
+  margin: 0 auto;
+}
+.doc-header .doc-title {
+  float: left;
+  margin: 21px 0;
+}
+.doc-header .doc-title a {
+  display: block;
+  height: 37px;
+  color: #fff;
+}
+.container-search .sub_tit {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  height: 223px;
+  background-color: #333333;
+}
+.container-search .sub_tit strong {
+  font-size: 27px;
+  font-weight: normal;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.container-search .sub_tit .wrap_search {
+  margin: 8px 0 14px;
+}
+.container-search .sub_tit .bundle_inp {
+  position: relative;
+  width: 400px;
+  margin: 0 auto;
+  border-radius: 25px;
+  box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.4);
+}
+.sub_tit .wrap_search input {
+  width: 400px;
+  height: 43px;
+  padding: 9px 18px;
+  font-size: 15px;
+  line-height: 43px;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0 none;
+  border-radius: 25px;
+  box-sizing: border-box;
+  outline: none;
+}
+.sub_tit .wrap_search button {
+  position: absolute;
+  top: 9px;
+  right: 18px;
+  width: 23px;
+  height: 23px;
+}
+.sub_tit .wrap_search button::before {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #3377ff;
+  border-radius: 50%;
+  box-sizing: border-box;
+  content: "";
+}
+.sub_tit .wrap_search button::after {
+  position: absolute;
+  right: 3px;
+  bottom: 4px;
+  width: 6px;
+  /* height: 15px; */
+  border-top: 2px solid #3377ff;
+  border-radius: 5px;
+  transform: rotate(45deg);
+  content: "";
+}
+.sub_tit .wrap_search button:hover::before,
+.sub_tit .wrap_search button:hover::after {
+  opacity: 0.8;
+}
+.container-search .sub_tit p {
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+}
+.container-search .sub_tit em {
+  color: #ffdd00;
+}
+.doc-main .main-content {
+  display: grid;
+  grid-template-areas: "content feature";
+  justify-content: center;
+  height: calc(100vh - 430px);
+  overflow: scroll;
+  padding: 29px 0 43px;
+  background-color: #f8f8f9;
+}
+.inner-main .content-article {
+  grid-area: content;
+  width: 700px;
+  margin-right: 29px;
+}
+.content-article .list_job {
+  margin-bottom: 27px;
+}
+.content-article .list_job li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 400px 300px;
+  align-items: center;
+  height: 86px;
+  padding: 18px 0 20px;
+  box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
 }
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+.content-article .list_job li + li {
+  margin-top: 7px;
 }
-
-.menu {
-  background: darkslateblue;
-  padding: 15px;
-  border-radius: 10px;
-}
-
-.menu a {
-  color: white;
-  padding: 10px;
-}
-
-.discount {
-  background: #eee;
-  padding: 3px;
-  margin: 5px;
-  border-radius: 10px;
-}
-
-.room-img {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.ani-button {
-  background: skyblue;
-  padding: 5px 15px;
-  border: none;
-  margin: 10px auto;
-  border-radius: 10px;
-  color: white;
-  font-size: 15px;
-  width: 20%;
-}
-
-.buttons {
+.content-article .list_job .new::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3px;
+  height: 100%;
+  font-size: 10px;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: -1px;
+  background-color: #ffdd00;
+  content: "NEW";
 }
-
-.ani-button:hover {
-  animation-name: Shake;
-  animation-duration: 1.5s;
+.content-article .list_job .new::after {
+  position: absolute;
+  top: 24px;
+  left: -11px;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: 10px;
+  font-size: 25px;
+  color: #ffdd00;
+  content: "\f0a3";
 }
-
-@keyframes Shake {
-  0% {
-    transform: rotate(0px);
-  }
-  33% {
-    transform: rotate(-10deg);
-  }
-  66% {
-    transform: rotate(10deg);
-  }
-  100% {
-    transform: rotate(0px);
-  }
+.content-article .list_job img {
+  display: block;
+  margin: 0 auto;
+}
+.content-article .title_job {
+  margin-left: 20px;
+  padding: 0 5px;
+}
+.title_job strong {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 21px;
+}
+.title_job strong em {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 12px;
+  color: #999999;
+}
+.list_job .title_job .link_title {
+  display: inline-block;
+}
+.list_job .title_job .bundle_badge {
+  overflow-x: scroll;
+  display: block;
+  margin-top: 5px;
+  font-size: 0;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.list_job .title_job .bundle_badge::-webkit-scrollbar {
+  display: none;
+}
+.title_job .bundle_badge a {
+  display: inline-block;
+  height: 21px;
+  padding: 0 8px;
+  font-size: 10px;
+  color: #808080;
+  line-height: 21px;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+.title_job .bundle_badge a + a {
+  margin-left: 5px;
+}
+.content-article .desc_job {
+  padding: 0 25px 0 5px;
+  text-align: right;
+}
+.desc_job .badge_type {
+  display: inline-block;
+  height: 21px;
+  padding: 0 7px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 21px;
+  border-radius: 3px;
+  background-color: #3377ff;
+}
+.content-article .desc_job .wrap_txt {
+  margin-top: 9px;
+  font-size: 0;
+}
+.desc_job .wrap_txt span + span {
+  margin-left: 10px;
+}
+.desc_job .txt_day {
+  display: inline-block;
+  font-size: 12px;
+}
+.desc_job .txt_day::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  margin-right: 5px;
+  font-size: 10px;
+  content: "\f017";
+}
+.desc_job .txt_location {
+  display: inline-block;
+  font-size: 12px;
+}
+.desc_job .txt_location::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  margin-right: 5px;
+  font-size: 10px;
+  content: "\f3c5";
+}
+.content-article .btn_more {
+  display: block;
+  width: 198px;
+  height: 36px;
+  margin: 0 auto;
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 25px;
+  background-color: #00acff;
+}
+.inner-main .content-feature {
+  grid-area: feature;
+}
+.doc-footer {
+  /* grid-area: footer; */
+  width: 100%;
+  height: 70px;
+  background-color: #ffffff;
+  position: absolute;
+  bottom: 0;
+}
+.doc-footer .inner_footer {
+  display: flex;
+  justify-content: space-between;
+  width: 916px;
+  margin: 0 auto;
+  padding-top: 22px;
+}
+.doc-footer .inner_footer small {
+  font-size: 12px;
+  line-height: 21px;
+  color: #999;
+}
+.inner_footer .area_link a {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #999;
 }
 </style>

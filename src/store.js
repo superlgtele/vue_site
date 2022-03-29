@@ -1,42 +1,49 @@
 import { createStore } from "vuex";
-import { ProductsData } from "./assets/oneroom";
+import axios from "axios";
 
 const store = createStore({
   state() {
     return {
-      modal: false,
-      menus: ["Home", "Shop", "About"],
-      products: ProductsData,
-      ModalIndex: 0,
-      MonthData: 0,
-      Conserve: [...ProductsData],
+      joblistdata: [],
+      searchresult: "",
     };
   },
   mutations: {
-    OpenModal(state, payload) {
-      state.modal = true;
-      state.ModalIndex = payload;
+    getajax(state, payload) {
+      state.joblistdata.push(payload);
     },
-    CloseModal(state) {
-      state.modal = false;
-    },
-    UserMonth(state, payload) {
-      state.MonthData = payload;
-    },
-    SortPrice(state) {
-      state.products.sort(function (a, b) {
-        return a.price - b.price;
+    // searchfilter(state, payload) {
+    //   const OriginData = state.joblistdata[0]?.jobList;
+    //   console.log(payload);
+    //   const FilterData = OriginData.filter((titles) => {
+    //     return titles.title == payload;
+    //   });
+    //   state.joblistdata[0].jobList = FilterData;
+    // },
+    searchfilter(state, payload) {
+      const OriginData = state.joblistdata[0]?.jobList;
+      const FilterData = OriginData.filter(function (data) {
+        if (payload === "ㅍ") {
+          return data.title.includes("프론트");
+        } else if (payload === "ㅂ") {
+          return data.title.includes("백");
+        } else if (payload === "ㅇ") {
+          return data.title.includes("웹");
+        } else {
+          return data.title.includes("Q");
+        }
       });
-    },
-    SortName(state) {
-      const FilterData = state.products.filter((a) => a.price <= 500000);
-      state.products = FilterData;
-    },
-    BackSort(state) {
-      state.products = [...state.Conserve];
+      state.searchresult = FilterData.length;
+      state.joblistdata[0].jobList = FilterData;
     },
   },
-  actions: {},
+  actions: {
+    ajax(context) {
+      axios.get("http://localhost:3001/rest/v1/jobs").then((result) => {
+        context.commit("getajax", result.data);
+      });
+    },
+  },
 });
 
 export default store;
